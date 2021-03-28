@@ -4,11 +4,13 @@ SlashCmdList["ROSTER"] = function()
 end
 
 function getRoster()
+    local MAX_RAID_SIZE <const> = 30
     local names = {}
-    for i = 1, 30 do
+    for i = 1, MAX_RAID_SIZE do
         names[i] = GetRaidRosterInfo(i)
     end
-    names_string = date("%d/%m/%y")
+    local today = date("%d/%m/%y")
+    names_string = today
     for i, name in ipairs(names) do
         names_string = names_string .. '\r' .. name
     end
@@ -19,19 +21,19 @@ StaticPopupDialogs["ROSTER_DIALOG"] = {
     OnShow = function(self, data)
         roster = getRoster()
         self.editBox:SetText(roster)
+        self.editBox:HighlightText()
+        self.editBox:SetFocus()
         self.editBox:SetScript("OnTextChanged", function()
             self.editBox:SetText(roster)
             self.editBox:HighlightText()
             self.editBox:SetFocus()
         end)
-        self.editBox:HighlightText()
-        self.editBox:SetFocus()
         self.editBox:SetScript("OnEscapePressed", function()
             self.editBox:Hide()
             self:Hide()
         end)
     end,
-    text = "Press CTRL+C, then click OK and paste the result in Discord:",
+    text = "Press Ctrl + C, then click OK and paste the result in Discord:",
     button1 = "OK",
     timeout = 0,
     whileDead = true,
