@@ -1,0 +1,6 @@
+## Interface: 80300
+## Title: RaidRoster
+## Author: Tarasha
+## Version: 1.0.0
+
+RaidRoster.lua
