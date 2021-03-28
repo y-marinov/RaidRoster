@@ -4,7 +4,7 @@ SlashCmdList["ROSTER"] = function()
 end
 
 function getRoster()
-    local MAX_RAID_SIZE <const> = 30
+    local MAX_RAID_SIZE = 30
     local names = {}
     for i = 1, MAX_RAID_SIZE do
         names[i] = GetRaidRosterInfo(i)
